@@ -46,6 +46,7 @@ namespace TechJobsConsoleAutograded6
         {
             // load data, if not already loaded
             LoadData();
+            
 
             return null;
         }
