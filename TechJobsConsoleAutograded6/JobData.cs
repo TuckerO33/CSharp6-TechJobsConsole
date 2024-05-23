@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Text;
 
 namespace TechJobsConsoleAutograded6
@@ -46,28 +47,25 @@ namespace TechJobsConsoleAutograded6
         {
             // load data, if not already loaded
             LoadData();
-            List<List<Dictionary<string, string>>> bigJobsList = new List<List<Dictionary<string, string>>>();
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-            foreach (Dictionary<string, string> column in AllJobs)
-            {
-                foreach (string key in column.Keys)
-                {
-                    string columnSelector = key;
-                    bigJobsList.Add(FindByColumnAndValue(columnSelector, value));
-                }
+            string caseInsensitiveSearch = value.ToLower();
+            List<string> columns = new List<string>{"core competency", "employer", "location", "position type", "name"};
 
-                    foreach (List<Dictionary<string, string>> jobList in bigJobsList) 
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                for (int i = 0; i < columns.Count; i++ )
                 {
-                    for(int j = 0; j< jobList.Count; j++) 
+                    string aValue = row[columns[i]];
+                    string caseInsensitiveValue = aValue.ToLower();
+                if (caseInsensitiveValue.Contains(caseInsensitiveSearch))
                     {
-                        if (!jobs.Contains(jobList[j]))
+                        if (!jobs.Contains(row))
                         {
-                            jobs.Add(jobList[j]);
+                            jobs.Add(row);
                         }
                     }
-                }
+                }   
             }
-
             return jobs;
         }
 
