@@ -84,14 +84,16 @@ namespace TechJobsConsoleAutograded6
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            string caseInsensitiveSearch = value.ToLower(); 
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
                 string aValue = row[column];
+                string caseInsensitiveValue = aValue.ToLower();
 
 
                 //TODO: Make search case-insensitive
-                if (aValue.Contains(value))
+                if (caseInsensitiveValue.Contains(caseInsensitiveSearch))
                 {
                     jobs.Add(row);
                 }

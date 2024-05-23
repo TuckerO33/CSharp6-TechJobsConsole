@@ -60,6 +60,7 @@ namespace TechJobsConsoleAutograded6
                     // What is their search term?
                     Console.WriteLine(Environment.NewLine + "Search term: ");
                     string searchTerm = Console.ReadLine();
+                    
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
