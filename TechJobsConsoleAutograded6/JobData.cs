@@ -46,9 +46,29 @@ namespace TechJobsConsoleAutograded6
         {
             // load data, if not already loaded
             LoadData();
-            
+            List<List<Dictionary<string, string>>> bigJobsList = new List<List<Dictionary<string, string>>>();
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            foreach (Dictionary<string, string> column in AllJobs)
+            {
+                foreach (string key in column.Keys)
+                {
+                    string columnSelector = key;
+                    bigJobsList.Add(FindByColumnAndValue(columnSelector, value));
+                }
 
-            return null;
+                    foreach (List<Dictionary<string, string>> jobList in bigJobsList) 
+                {
+                    for(int j = 0; j< jobList.Count; j++) 
+                    {
+                        if (!jobs.Contains(jobList[j]))
+                        {
+                            jobs.Add(jobList[j]);
+                        }
+                    }
+                }
+            }
+
+            return jobs;
         }
 
         /**
